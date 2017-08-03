@@ -7,26 +7,26 @@ Another way to get just consonants would be to use string.ascii_lowercase
 """
 import random
 
-VOWELS = "aeiou"
-CONSONANTS = "bcdfghjklmnpqrstvwxyz"
-ALL = "abcdefghijklmnopqrstuvwxyz"
 
-word_format = input("Enter the word format here (% for consonant, # for vowel and * for either) e.g %#*%\nYou may also choose to automate it by typing random: ")
-if word_format.lower() == "random":
-    word_format = ""
-    for i in range(random.randint(3,10)):
-        word_format += random.choice("#%*")
-    print("The randomised word format is:",word_format)
+def main():
+    VOWELS = "aeiou"
+    CONSONANTS = "bcdfghjklmnpqrstvwxyz"
+    word_format = input("Please enter the word format: ")
+    while not is_valid_format(word_format):
+        print("Please enter only c or v")
+        word_format = input("Please enter new word format: ")
+    word = ""
+    for kind in word_format:
+        if kind == "c":
+            word += random.choice(CONSONANTS)
+        else:
+            word += random.choice(VOWELS)
+    print(word)
 
-word = ""
-for kind in word_format:
-    if kind == "%":
-        word += random.choice(CONSONANTS)
-    elif kind == "#":
-        word += random.choice(VOWELS)
-    elif kind == "*":
-        word += random.choice(ALL)
-    elif kind in ALL:
-        word += kind
+def is_valid_format(word):
+    for char in word:
+        if char not in ("c","v"):
+            return False
+    return True
 
-print("Your random word is:",word)
+main()
