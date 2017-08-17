@@ -1,11 +1,10 @@
 from datetime import date
 
 people = {}
-year = []
 
 def calculate_age(born):
     today = date.today()
-    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    return today.year - int(born[2]) - ((today.month, today.day) < (int(born[1]), int(born[0])))
 
 for i in range(5):
     name = input("Enter name of person {}: ".format(i+1))
@@ -23,13 +22,13 @@ for i in range(5):
                 elif y > 12 and x == 1:
                     print("Your month is not valid!")
                     raise ValueError
-            year.append(dob.split("/"))
-            people[name] = dob
+            people[name] = dob.split("/")
             break
         except ValueError:
             dob = input("Please enter a valid date of birth (DD/MM/YYYY): ")
         except IndexError:
             dob = input("Please enter the full date of birth (DD/MM/YYYY): ")
 
-print(people)
-print(year)
+for each in people:
+    people[each] = calculate_age(people[each])
+    print("{} is {} years old today".format(each, people[each]))
