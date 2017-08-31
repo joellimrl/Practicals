@@ -1,0 +1,18 @@
+BoxLayout:
+    orientation: "vertical"
+    TextInput:
+        text: '33'
+        font_size: 40
+        id: temperature
+    BoxLayout:
+        orientation: "horizontal"
+        Button:
+            text: "Celsius"
+            on_release: app.handle_calculate(1)
+        Button:
+            text: "Fahrenheit"
+            on_release: app.handle_calculate(2)
+    Label:
+        id: output_label
+        text: "Choose Celsius or Fahrenheit"
+        color: 1,1,0,1

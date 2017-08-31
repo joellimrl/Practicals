@@ -1,0 +1,37 @@
+<Widget>:
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    color: 1,1,1,1
+<TextInput>:
+    canvas.before:
+        Color:
+            rgba: 1,1,1,1
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            id: input_number
+            text: '7'
+            font_size: 48
+            multiline: False
+            on_text: app.handle_calculate()
+        Button:
+            text: "Up"
+            on_press: app.handle_increment(1)
+        Button:
+            text: "Down"
+            on_press: app.handle_increment(-1)
+#    BoxLayout:
+#        Button:
+#            text: 'Convert miles to km'
+#            on_press: app.handle_calculate()
+    BoxLayout:
+        Label:
+            id: output_label
+            font_size: 48
+            color: (1, 1, 0, 1)
