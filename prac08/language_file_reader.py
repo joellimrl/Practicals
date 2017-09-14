@@ -30,11 +30,11 @@ def main():
 
         # reflection is stored as a string (Yes/No) and we want a Boolean
         reflection = parts[2] == "Yes"
-
+        pointer = parts[3] == "Yes"
         # construct a ProgrammingLanguage object using the elements
         # year should be an int
-        language = ProgrammingLanguage(parts[0], parts[1], reflection,
-                                       int(parts[3]))
+        language = ProgrammingLanguage(parts[0], parts[1], reflection, pointer,
+                                       int(parts[4]))
 
         # add the language we've just constructed to the list
         languages.append(language)
@@ -87,7 +87,7 @@ def using_namedtuple():
 
 def using_csv_namedtuple():
     """Language file reader version using both csv module and named tuple."""
-    Language = namedtuple('Language', 'name, typing, reflection, year')
+    Language = namedtuple('Language', 'name,typing, Reflection, year')
     in_file = open("languages.csv", "r")
     in_file.readline()
     for language in map(Language._make, csv.reader(in_file)):
