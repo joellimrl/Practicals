@@ -12,12 +12,10 @@ def main():
     print("Current directory is", os.getcwd())
 
     # change to desired directory
-    os.chdir('Lyrics')
+    os.chdir('Lyrics\Christmas')
     # print a list of all files (test)
     print(os.listdir('.'))
 
-    web = request.urlopen("https://www.google.com")
-    print(web.read())
     """
     info = {}
     for each in os.listdir("."):
@@ -48,16 +46,16 @@ def main():
     #         extensions[ext] = input("What category would you like to sort {} files into? ".format(ext))
     # print(extensions)
     # # loop through each file in the (original) directory
-    # for filename in os.listdir('.'):
-    #     # ignore directories, just process files
-    #     if not os.path.isdir(filename):
+    for filename in os.listdir('.'):
+         # ignore directories, just process files
+         if not os.path.isdir(filename):
     #         ext = filename.split(".")[1]
     #         if not os.path.isdir(extensions[ext]):
     #             os.mkdir(extensions[ext])
     #         shutil.move(filename, extensions[ext])
 
-            #new_name = get_fixed_filename(filename)
-            #print(new_name)
+            new_name = get_fixed_filename(filename)
+            print(new_name)
 
             # Option 1: rename file to new name - in place
             # os.rename(filename, new_name)
@@ -80,9 +78,8 @@ def get_fixed_filename(filename):
     new_name = ""
     filename = filename.replace(" ", "_").replace(".TXT", ".txt")
 
-    previousSpace = False
-    new_name += filename[0].upper()
-    for each in filename[1:]:
+    previousSpace = True
+    for each in filename:
         if each.isupper():
             if previousSpace:
                 new_name += each
